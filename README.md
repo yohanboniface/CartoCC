@@ -33,6 +33,9 @@ Example of rules:
 ]
 ```
 
+**Note**: *Fields are relative to `Layer`. You can use a path as field reference.
+For example, `Datasource.type` will look for the field `type` of `Layer.Datasource`*.
+
 Then run the script from command line to get the customized `.mml` file:
 
 ```
