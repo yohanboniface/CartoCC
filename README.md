@@ -1,14 +1,14 @@
-# CartoCC - Config Customizer
+# CartoCC — Carto Config Customizer
 
 Very simple tool for customizing layers values of a `.mml` config file.
 
 Warning: it's *experimental* and *work in progress".
 
-*** Usage
+### Usage
 
 For example, you may want to customize the database connection or some shp file path.
 
-`CartoCC` makes it very simple. You just create some rules, stored in a json file, applying to layers fields. Each rule define some values to set to a layer if some field has some value.
+CartoCC makes it very simple. You just create some rules, stored in a json file, applying to layers fields. Each rule define some values to set to a layer if some field has some value.
 
 Example of rules:
 
