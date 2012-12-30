@@ -2,7 +2,7 @@
 
 Very simple tool for customizing layers values of a `.mml` config file.
 
-Warning: it's *experimental* and *work in progress".
+Warning: it's *experimental* and *work in progress*.
 
 ### Usage
 
@@ -33,8 +33,8 @@ Example of rules:
 ]
 ```
 
-Then run the script from command line:
+Then run the script from command line to get the customized `.mml` file:
 
 ```
-node cartocc.js <path-to-project.mml> <path-to-custom-rules.json>
+node cartocc.js <path-to-project.mml> <path-to-custom-rules.json> > local_project.mml
 ```
