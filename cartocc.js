@@ -70,7 +70,7 @@ C.prototype.setLayerValue = function(layer, fieldpath, value) {
 };
 
 C.prototype.output = function () {
-    process.stdout.write(JSON.stringify(this.mml));
+    process.stdout.write(JSON.stringify(this.mml, null, " "));
 };
 
 c = new C(cartoFile, configFile);
