@@ -1,23 +1,15 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
-var args = process.argv.slice(2);
-if (args.length < 2) {
-    help();
-    process.exit(1);
-}
-var cartoFile = args[0];
-var configFile = args[1];
+
 
 function help () {
     console.log('Usage: node cartocc.js <path-to-project.mml> <path-to-config.json>');
 }
 
-C = function (mmlPath, configPath) {
-    var rulestring = fs.readFileSync(configFile);
-    var mmlstring = fs.readFileSync(cartoFile);
-    this.rules = JSON.parse(rulestring);
-    this.mml = JSON.parse(mmlstring);
+C = function (mml, rules) {
+    this.rules = JSON.parse(rules);
+    this.mml = JSON.parse(mml);
 };
 
 C.prototype.process = function() {
@@ -70,9 +62,24 @@ C.prototype.setLayerValue = function(layer, fieldpath, value) {
 };
 
 C.prototype.output = function () {
-    process.stdout.write(JSON.stringify(this.mml, null, " "));
+    return JSON.stringify(this.mml, null, " ");
 };
 
-c = new C(cartoFile, configFile);
-c.process();
-c.output();
+/**
+ * Run from command line
+ */
+function run () {
+    var args = process.argv.slice(2);
+    if (args.length < 2) {
+        help();
+        process.exit(1);
+    }
+    var mml = fs.readFileSync(args[0]);
+    var rules = fs.readFileSync(args[1]);
+    c = new C(mml, rules);
+    c.process();
+    process.stdout.write(c.output());
+}
+if (process.argv[1] == module.filename) {
+    run();
+}
