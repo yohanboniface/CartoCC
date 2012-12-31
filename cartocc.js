@@ -55,7 +55,7 @@ C.prototype.layerHasValue = function (layer, fieldpath, value) {
         }
         field = field[path_elements[el]];
     }
-    return field == value;
+    return value instanceof Array && value.indexOf(field) != -1 || field == value;
 };
 
 C.prototype.setLayerValue = function(layer, fieldpath, value) {

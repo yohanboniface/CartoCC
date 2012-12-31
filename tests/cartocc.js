@@ -167,12 +167,55 @@ function test_two_conditions_must_be_both_true() {
     _testOutput(mml, rules, output);
 }
 
+function test_condition_value_can_be_an_array() {
+    var mml = {"Layer":[
+        {
+            "id": "thiswillmatch",
+            "Datasource": {
+                "field": "oldvalue"
+            }
+        },
+        {
+            "id": "thiswillnotmatch",
+            "Datasource": {
+                "field": "oldvalue"
+            }
+        }
+    ]};
+    var rules = [
+        {
+            "if": {
+                "id": ["thiswillmatch", "orthisvalue"]
+            },
+            "then": {
+                "Datasource.field": "newvalue"
+            }
+        }
+    ];
+    var output = {"Layer":[
+        {
+            "id": "thiswillmatch",
+            "Datasource": {
+                "field": "newvalue"
+            }
+        },
+        {
+            "id": "thiswillnotmatch",
+            "Datasource": {
+                "field": "oldvalue"
+            }
+        }
+    ]};
+    _testOutput(mml, rules, output);
+}
+
 
 var to_run = [
     test_simple_output,
     test_fieldpath_in_if_block_should_work,
     test_only_first_rule_should_apply,
-    test_two_conditions_must_be_both_true
+    test_two_conditions_must_be_both_true,
+    test_condition_value_can_be_an_array
 ];
 Object.keys(to_run).forEach(function (key) {
     try {
