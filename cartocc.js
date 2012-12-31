@@ -93,6 +93,6 @@ function run () {
     c.process();
     process.stdout.write(c.output());
 }
-if (process.argv[1] == module.filename) {
+if (!module.parent) {
     run();
 }
