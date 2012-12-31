@@ -15,18 +15,20 @@ Example of rules:
 ```
 [
     {
-        "if_field": "Datasource.type",
-        "has_value": "postgis",
-        "then_use": {
+        "if": {
+            "Datasource.type": "postgis"
+        },
+        "then": {
             "Datasource.dbname": "osm2",
             "Datasource.host": "localhost2",
             "Datasource.password": "blahblah"
         }
     },
     {
-        "if_field": "id",
-        "has_value": "shoreline_300",
-        "then_use": {
+        "if": {
+            "id": "shoreline_300"
+        },
+        "then": {
             "Datasource.file": "/data/shoreline_300.shp"
         }
     }

@@ -22,13 +22,26 @@ C.prototype.process = function() {
 
 C.prototype.customizeLayer = function(layer) {
     var rule,
-        field;
+        fieldpath,
+        matched;
     for (var idx in this.rules) {
         rule = this.rules[idx];
-        if (this.layerHasValue(layer, rule.if_field, rule.has_value)) {
-            for (var fieldpath in rule.then_use) {
-                this.setLayerValue(layer, fieldpath, rule.then_use[fieldpath]);
+        // must pass every condition
+        matched = false;
+        for (fieldpath in rule['if']) {
+            if (this.layerHasValue(layer, fieldpath, rule['if'][fieldpath])) {
+                matched = true;
             }
+            else {
+                matched = false;
+                break;
+            }
+        }
+        if (matched) {
+            for (fieldpath in rule.then) {
+                this.setLayerValue(layer, fieldpath, rule.then[fieldpath]);
+            }
+            break;  // Apply only first matching rule
         }
     }
 };
