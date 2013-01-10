@@ -70,10 +70,9 @@ You can also test on an array of values (which are ORed):
 
 
 **Notes**:
-
 * *Fields are relative to `Layer`. You can use a path as field reference.
 For example, `Datasource.type` will look for the field `type` of `Layer.Datasource`*.
-* only first matching rule apply
+* *only first matching rule apply*
 
 
 Then run the script from command line to get the customized `.mml` file:
