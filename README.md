@@ -26,10 +26,10 @@ Example of rules:
     },
     {
         "if": {
-            "id": "shoreline_300"
+            "class": "shp"
         },
         "then": {
-            "Datasource.file": "/data/shoreline_300.shp"
+            "Datasource.file": "/data/{id}.shp"
         }
     }
 ]
@@ -68,6 +68,19 @@ You can also test on an array of values (which are ORed):
 ]
 ```
 
+You use dynamic properties of the layer in the final value (this will use Layer.id in the final path):
+```
+[
+    {
+        "if": {
+            "class": "shp"
+        },
+        "then": {
+            "Datasource.file": "/data/{id}.shp"
+        }
+    }
+]
+```
 
 **Notes**:
 * *Fields are relative to `Layer`. You can use a path as field reference.
