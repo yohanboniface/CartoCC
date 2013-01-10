@@ -23,7 +23,9 @@ C.prototype.process = function() {
 C.prototype.customizeLayer = function(layer) {
     var rule,
         fieldpath,
-        matched;
+        matched,
+        value,
+        flatLayer = this.flatenLayer(layer);
     for (var idx in this.rules) {
         rule = this.rules[idx];
         // must pass every condition
@@ -39,23 +41,41 @@ C.prototype.customizeLayer = function(layer) {
         }
         if (matched) {
             for (fieldpath in rule.then) {
-                this.setLayerValue(layer, fieldpath, rule.then[fieldpath]);
+                value = this.format(rule.then[fieldpath], flatLayer);
+                this.setLayerValue(layer, fieldpath, value);
             }
             break;  // Apply only first matching rule
         }
     }
 };
 
-C.prototype.layerHasValue = function (layer, fieldpath, value) {
-    var path_elements = fieldpath.split('.'),
-        field = layer;
-    for (var el in path_elements) {
-        if (typeof field === "undefined") {
-            break;
+/*
+* Turns {"Datasource": {"id": "xxx"}} into {"Datasource.id": "xxx"}
+*/
+C.prototype.flatenLayer = function (layer) {
+    var output = {};
+    var flaten = function (els, prefix) {
+        prefix = prefix && prefix + '.' || "";
+        var key;
+        for (var el in els) {
+            key = prefix + el;
+            value = els[el];
+            if (value instanceof Object) {
+                flaten(value, key);
+            }
+            else {
+                output[key] = value;
+            }
         }
-        field = field[path_elements[el]];
-    }
-    return value instanceof Array && value.indexOf(field) != -1 || field == value;
+    };
+    flaten(layer);
+    return output;
+};
+
+C.prototype.layerHasValue = function (layer, fieldpath, expected) {
+    var flatLayer = this.flatenLayer(layer),
+        current = flatLayer[fieldpath];
+    return expected instanceof Array && expected.indexOf(current) != -1 || current == expected;
 };
 
 C.prototype.setLayerValue = function(layer, fieldpath, value) {
@@ -73,6 +93,20 @@ C.prototype.setLayerValue = function(layer, fieldpath, value) {
         }
     }
 };
+
+/*
+* From Leaflet.
+*/
+C.prototype.format = function (str, data) {
+    return str.replace(/\{ *([\w_]+) *\}/g, function (str, key) {
+        var value = data[key];
+        if (!data.hasOwnProperty(key)) {
+            throw new Error('No value provided for variable ' + str);
+        }
+        return value;
+    });
+};
+
 
 C.prototype.output = function () {
     return JSON.stringify(this.mml, null, " ");
