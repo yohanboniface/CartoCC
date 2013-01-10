@@ -243,7 +243,7 @@ function test_can_use_layer_properties_in_value_to_set() {
                 "class": "shp"
             },
             "then": {
-                "Datasource.field": "/path/to/{id}.shp"
+                "Datasource.field": "/path/to/{id}/{id}.shp"
             }
         }
     ];
@@ -252,7 +252,7 @@ function test_can_use_layer_properties_in_value_to_set() {
             "id": "my_id",
             "class": "shp",
             "Datasource": {
-                "field": "/path/to/my_id.shp"
+                "field": "/path/to/my_id/my_id.shp"
             }
         }
     ]};

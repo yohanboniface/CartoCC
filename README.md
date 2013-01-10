@@ -68,7 +68,7 @@ You can also test on an array of values (which are ORed):
 ]
 ```
 
-You use dynamic properties of the layer in the final value (this will use Layer.id in the final path):
+You can use dynamic properties of the layer in the final value (this will use Layer.id in the final path):
 ```
 [
     {
@@ -76,7 +76,7 @@ You use dynamic properties of the layer in the final value (this will use Layer.
             "class": "shp"
         },
         "then": {
-            "Datasource.file": "/data/{id}.shp"
+            "Datasource.file": "/data/{id}/{id}.shp"
         }
     }
 ]
