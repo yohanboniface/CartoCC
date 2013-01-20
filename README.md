@@ -4,6 +4,12 @@ Very simple tool for customizing layers values of a `.mml` config file.
 
 Warning: it's *experimental* and *work in progress*.
 
+### Install
+
+```
+npm intall cartocc
+```
+
 ### Usage
 
 For example, you may want to customize the database connection or some shp file path.
@@ -91,5 +97,5 @@ For example, `Datasource.type` will look for the field `type` of `Layer.Datasour
 Then run the script from command line to get the customized `.mml` file:
 
 ```
-node cartocc.js <path-to-project.mml> <path-to-custom-rules.json> > local_project.mml
+cartocc <path-to-project.mml> <path-to-custom-rules.json> > local_project.mml
 ```
