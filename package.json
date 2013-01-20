@@ -1,0 +1,23 @@
+{
+    "name": "cartocc",
+    "desciption": "Carto Config Customizer is a very simple tool for customizing layers values of a `.mml` config file ",
+    "version": "0.0.1",
+    "url": "https://github.com/yohanboniface/cartocc",
+    "engines": {
+        "node": ">=0.4.x"
+    },
+    "author": {
+        "name": "Yohan Boniface",
+        "url": "http://yohanboniface.me/",
+        "email": "yb@enix.org"
+    },
+    "keywords": [
+        "tilemill",
+        "maps",
+        "carto",
+        "mapnik"
+    ],
+    "bin": {
+        "cartocc": "./lib/cartocc.js"
+    }
+}

@@ -1,4 +1,4 @@
-require('../cartocc.js');
+require('../lib/cartocc.js');
 var assert = require('assert');
 
 /*
