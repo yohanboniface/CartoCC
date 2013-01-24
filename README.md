@@ -79,7 +79,7 @@ You can use dynamic properties of the layer in the final value (this will use La
 [
     {
         "if": {
-            "class": "shp"
+            "Datasource.type": "shape"
         },
         "then": {
             "Datasource.file": "/data/{id}/{id}.shp"
