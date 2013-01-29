@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+var cartocc = require('../lib/cartocc');
+var fs = require('fs');
+
+function help () {
+    console.log('Usage: cartocc <path-to-project.mml> <path-to-config.json>');
+}
+
+/**
+ * Run from command line
+ */
+function run () {
+    var args = process.argv.slice(2);
+    if (args.length < 2) {
+        help();
+        process.exit(1);
+    }
+    var mml = fs.readFileSync(args[0], 'utf8');
+    var rules = fs.readFileSync(args[1], 'utf8');
+    c = new cartocc.CartoCC(mml, rules);
+    c.process();
+    process.stdout.write(c.output());
+}
+if (!module.parent) {
+    run();
+}

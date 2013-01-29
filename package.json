@@ -18,7 +18,7 @@
         "mapnik"
     ],
     "bin": {
-        "cartocc": "./lib/cartocc/index.js"
+        "cartocc": "./bin/cartocc"
     },
     "main": "./lib/cartocc/index"
 }
