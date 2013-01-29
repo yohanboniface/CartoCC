@@ -1,4 +1,4 @@
-require('../lib/cartocc.js');
+var cartocc = require('../lib/cartocc');
 var assert = require('assert');
 
 /*
@@ -7,7 +7,7 @@ var assert = require('assert');
 * @param output json
 */
 function _testOutput (mml, rules, output) {
-    var c = new C(JSON.stringify(mml), JSON.stringify(rules));
+    var c = new cartocc.CartoCC(JSON.stringify(mml), JSON.stringify(rules));
     c.process();
     assert.deepEqual(c.mml, output, "match");
 }
@@ -15,7 +15,7 @@ function _testOutput (mml, rules, output) {
 function test_init_args_can_be_JSON () {
     var mml = {"Layer": {}};
     var rules = {};
-    var c = new C(mml, rules);
+    var c = new cartocc.CartoCC(mml, rules);
     assert(typeof c.mml === "object");
     assert(typeof c.rules === "object");
 }
@@ -23,7 +23,7 @@ function test_init_args_can_be_JSON () {
 function test_init_args_can_be_string () {
     var mml = '{"Layer": {}}';
     var rules = '{}';
-    var c = new C(mml, rules);
+    var c = new cartocc.CartoCC(mml, rules);
     assert(typeof c.mml === "object");
     assert(typeof c.rules === "object");
 }
