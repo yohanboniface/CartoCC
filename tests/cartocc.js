@@ -12,6 +12,22 @@ function _testOutput (mml, rules, output) {
     assert.deepEqual(c.mml, output, "match");
 }
 
+function test_init_args_can_be_JSON () {
+    var mml = {"Layer": {}};
+    var rules = {};
+    var c = new C(mml, rules);
+    assert(typeof c.mml === "object");
+    assert(typeof c.rules === "object");
+}
+
+function test_init_args_can_be_string () {
+    var mml = '{"Layer": {}}';
+    var rules = '{}';
+    var c = new C(mml, rules);
+    assert(typeof c.mml === "object");
+    assert(typeof c.rules === "object");
+}
+
 function test_simple_output() {
     var mml = {"Layer":[
         {
@@ -261,6 +277,8 @@ function test_can_use_layer_properties_in_value_to_set() {
 
 
 var to_run = [
+    test_init_args_can_be_JSON,
+    test_init_args_can_be_string,
     test_simple_output,
     test_fieldpath_in_if_block_should_work,
     test_only_first_rule_should_apply,
