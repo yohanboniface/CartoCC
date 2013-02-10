@@ -1,7 +1,7 @@
 {
     "name": "cartocc",
-    "desciption": "Carto Config Customizer is a very simple tool for customizing layers values of a `.mml` config file ",
-    "version": "0.0.2",
+    "description": "Carto Config Customizer is a very simple tool for customizing layers values of a `.mml` config file ",
+    "version": "0.0.3",
     "url": "https://github.com/yohanboniface/cartocc",
     "engines": {
         "node": ">=0.4.x"
