@@ -7,7 +7,7 @@ Warning: it's *experimental* and *work in progress*.
 ### Install
 
 ```
-npm intall cartocc
+npm install cartocc
 ```
 
 ### Usage
